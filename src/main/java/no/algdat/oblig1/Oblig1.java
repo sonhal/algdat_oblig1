@@ -13,6 +13,16 @@ class Oblig1 {
         a[y] = tmp;
     }
     
+    /**
+     * OPPGAVE 1
+     * 
+     * I metoden maks() blir det O(n) sammenligninger av verdier.
+     *
+     * Det blir flest ombyttninger om vært tall i arrayet er større en det forgje (n ombyttninger).
+     * Det blir færrest ombyttninger når det største tallet i arrayet ligger først i arrayet(1 ombyttning).
+     * Gjennomsnittet av ombyttninger er det samme som det harmoniske tallet til størrelsen til arrayet (log(n) + 0.577).
+     * 
+     */
     public static int maks(int[] a) {
         
         if(!a && a.length < 1){
@@ -27,9 +37,51 @@ class Oblig1 {
                 bytt(a, i, i+1);
             }
         }
-        
         return a[a.length -1 ]
     }
     
+    public static int ombyttinger(int[] a){
+        
+        if(!a && a.length < 1){
+            return new NoSuchElementException("Array passed is Null or empty");
+        }
+        int ombyttinger = 0;
+
+        for(int i = 0; i < a.length - 1; i++){
+            if(a[i] > a[i+1]){
+                ombyttinger++;
+                bytt(a, i, i+1);
+            }
+        }
+        return ombyttinger;
+    }
+    
+    
+    /**
+     * OPPGAVE 2
+     * 
+     */
+    public static int antallUlikeSortert(int[] a){
+        if(!isSorted(a)){
+            return new IllegalStateException("Array is not sorted rising");
+        }
+        
+        uniqueCounter = 1;
+        for(int i = 0; i < a.length; i++){
+            if(a[i] != a[i+1]){
+                uniqueCounter++;
+            }
+        }
+        return uniqueCounter;
+    }
+    
+    public static boolean isSorted(int[] a){
+        for(int i = 0; i < a.length; i++){
+            if(a[i] > a[i+1]){
+                return false;
+            }
+        }
+        return true;
+    }
     
 }

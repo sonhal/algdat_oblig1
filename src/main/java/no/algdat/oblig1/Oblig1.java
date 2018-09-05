@@ -4,9 +4,23 @@ package main.java.no.algdat.oblig1;
 
 import java.util.NoSuchElementException;
 
+
 public class Oblig1 {
     
     private Oblig1() {};
+
+    public static int[] randIntArray(int size){
+        int[] arr = new int[size];
+
+        for (int i = 1; i < size +1; i++) {
+            arr[i -1] = i;
+        }
+
+        for (int i = size - 1; i >= 0; i--) {
+            bytt(arr, i, (int)(Math.random() * i));
+        }
+        return arr;
+    }
     
     
     public static void bytt(int[] a, int x, int y){
@@ -67,9 +81,12 @@ public class Oblig1 {
         if(!isSorted(a)){
             throw new IllegalStateException("Array is not sorted rising");
         }
+        if(a.length < 1){
+            return 0;
+        }
         
         int uniqueCounter = 1;
-        for(int i = 0; i < a.length; i++){
+        for(int i = 0; i < a.length -1; i++){
             if(a[i] != a[i+1]){
                 uniqueCounter++;
             }
@@ -78,12 +95,33 @@ public class Oblig1 {
     }
     
     public static boolean isSorted(int[] a){
-        for(int i = 0; i < a.length; i++){
+        for(int i = 0; i < a.length - 1; i++){
             if(a[i] > a[i+1]){
                 return false;
             }
         }
         return true;
+    }
+
+    /**
+     * OPPGAVE 3
+     */
+    public static int antallUlikeUsortert(int[] a){
+        if(a.length < 1){
+            return 0;
+        }
+
+        int uniqueCounter = 0;
+        for(int i = 0; i < a.length -1; i++){
+            boolean unique = true;
+            for(int j = i - 1; j >= 0; j--){
+                if(a[i] == a[j]){
+                    unique = false;
+                }
+            }
+            if(unique) uniqueCounter++;
+        }
+        return uniqueCounter;
     }
     
 }

@@ -112,7 +112,7 @@ public class Oblig1 {
         }
 
         int uniqueCounter = 0;
-        for(int i = 0; i < a.length -1; i++){
+        for(int i = 0; i < a.length; i++){
             boolean unique = true;
             for(int j = i - 1; j >= 0; j--){
                 if(a[i] == a[j]){
@@ -123,5 +123,28 @@ public class Oblig1 {
         }
         return uniqueCounter;
     }
-    
+
+    /**
+     * OPPGAVE 4
+     */
+    public static void delsortering(int[] a){
+        int arrLength = a.length;
+        for(int i = 0; i < arrLength; i++){
+           if( a[i] % 2 == 0){
+               for(int j = arrLength - 1; j >= 0; j--){
+                   if(a[j] % 2 != 0){
+                       bytt(a, i, j);
+                   }
+               }
+           }
+           else{
+               for(int j = 0; j < arrLength; j++){
+                   if(a[j] % 2 == 0){
+                       bytt(a, i, j);
+                   }
+               }
+           }
+        }
+    }
+
 }

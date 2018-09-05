@@ -78,4 +78,11 @@ class Oblig1Test {
         assertEquals(unique, Oblig1.antallUlikeUsortert(usortert));
 
     }
+
+    @Test
+    void delsortering() {
+        int[] delArr = {1,2,3,4,5,6};
+        Oblig1.delsortering(delArr);
+        System.out.println(Arrays.toString(delArr));
+    }
 }

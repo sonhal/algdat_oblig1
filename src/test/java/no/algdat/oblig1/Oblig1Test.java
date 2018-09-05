@@ -1,20 +1,30 @@
-
-
 package test.java.no.algdat.oblig1;
-import main.java.no.algdat.oblig1.Oblig1;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class Oblig1Test {
-    
-    
-    public static void main(String[] args){
-        maks_test();
+
+    @org.junit.jupiter.api.BeforeEach
+    void setUp() {
     }
-    
-    
-    public static void maks_test(){
-        
-        int[] test = {3,123,2,152,12,3,21,1,4};
-        System.out.println(Oblig1.maks(test));
+
+    @org.junit.jupiter.api.Test
+    void bytt() {
     }
-    
+
+    @org.junit.jupiter.api.Test
+    void maks() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void ombyttinger() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void antallUlikeSortert() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void isSorted() {
+    }
 }

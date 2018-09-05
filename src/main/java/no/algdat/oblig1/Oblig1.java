@@ -2,7 +2,9 @@
 
 package main.java.no.algdat.oblig1;
 
-class Oblig1 {
+import java.util.NoSuchElementException;
+
+public class Oblig1 {
     
     private Oblig1() {};
     
@@ -25,8 +27,8 @@ class Oblig1 {
      */
     public static int maks(int[] a) {
         
-        if(!a && a.length < 1){
-            return new NoSuchElementException("Array passed is Null or empty");
+        if(a.length < 1){
+            throw new NoSuchElementException("Array passed is Null or empty");
         }
         
         // 1. Sammenlign først a[0] og a[1].
@@ -37,13 +39,13 @@ class Oblig1 {
                 bytt(a, i, i+1);
             }
         }
-        return a[a.length -1 ]
+        return a[a.length -1 ];
     }
     
     public static int ombyttinger(int[] a){
         
-        if(!a && a.length < 1){
-            return new NoSuchElementException("Array passed is Null or empty");
+        if(a.length < 1){
+            throw new NoSuchElementException("Array passed is Null or empty");
         }
         int ombyttinger = 0;
 
@@ -63,10 +65,10 @@ class Oblig1 {
      */
     public static int antallUlikeSortert(int[] a){
         if(!isSorted(a)){
-            return new IllegalStateException("Array is not sorted rising");
+            throw new IllegalStateException("Array is not sorted rising");
         }
         
-        uniqueCounter = 1;
+        int uniqueCounter = 1;
         for(int i = 0; i < a.length; i++){
             if(a[i] != a[i+1]){
                 uniqueCounter++;

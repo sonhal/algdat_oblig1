@@ -1,15 +1,13 @@
-package test.java.no.algdat.oblig1;
+package no.oslomet.cs.algdat;
 
-import main.java.no.algdat.oblig1.Oblig1;
+import no.oslomet.cs.algdat.Oblig1;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Oblig1Test {
+class Oblig1MyTest {
 
     int[] testArray;
 
@@ -81,8 +79,51 @@ class Oblig1Test {
 
     @Test
     void delsortering() {
-        int[] delArr = {1,2,3,4,5,6};
+        int[] delArr = {1, 2, 3, 4, 6, 5};
         Oblig1.delsortering(delArr);
         System.out.println(Arrays.toString(delArr));
+    }
+
+    @Test
+    void delsortering_only_even() {
+        int[] delArr = {4,2,6,10,8,4};
+        Oblig1.delsortering(delArr);
+        System.out.println(Arrays.toString(delArr));
+    }
+
+    @Test
+    void delsortering_only_odd() {
+        int[] delArr = {3,5,1,11,9,7};
+        Oblig1.delsortering(delArr);
+        System.out.println(Arrays.toString(delArr));
+    }
+
+    @Test
+    void delsortering_neg() {
+        int[] delArr = {-3,-5,-2,11,-9,7,12,5};
+        Oblig1.delsortering(delArr);
+        System.out.println(Arrays.toString(delArr));
+    }
+
+    @Test
+    void rotasjon() {
+        char[] delArr = {'A', 'B', 'C', 'D', 'E'};
+        Oblig1.rotasjon(delArr);
+        System.out.println(Arrays.toString(delArr));
+    }
+
+    @Test
+    void kvikksortering() {
+    }
+
+    @Test
+    void rotasjonOpt() {
+        char[] delArr = {'A', 'B', 'C', 'D', 'E'};
+        Oblig1.rotasjonOpt(delArr, 3);
+        System.out.println(Arrays.toString(delArr));
+    }
+
+    @Test
+    void rotasjonNeg() {
     }
 }

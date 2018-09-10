@@ -118,8 +118,8 @@ class Oblig1MyTest {
 
     @Test
     void rotasjonOpt() {
-        char[] delArr = {'A', 'B', 'C', 'D', 'E'};
-        Oblig1.rotasjonOpt(delArr, 3);
+        char[] delArr = {'A', 'B', 'C', 'D', 'E', 'X'};
+        Oblig1.rotasjonOpt(delArr, -1);
         System.out.println(Arrays.toString(delArr));
     }
 

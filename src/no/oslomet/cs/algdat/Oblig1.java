@@ -227,48 +227,39 @@ public class Oblig1 {
      * OPPGAVE 6
      */
     public static void rotasjon(char[] a, int k){
-        if(k > 0){
-            while (k > 0) {
-                rotasjon(a);
-                k--;
-            }
-        }
-        else{
-            while (k < 0){
-                rotasjonNeg(a);
-                k++;
-            }
-        }
+        rotasjonOpt(a, k);
     }
 
-    public static void rotasjonOpt(char[] a ,int  k){
+    public static void rotasjonOpt(char[] a, int  k){
         int length = a.length;
         if(length < 2){
             return;
         }
-        int[] newPos = new int[length];
+        char[] b = new char[length];
+
+        if(k < 0){
+            for(int i = 0; i < length; i++){
+                int place = ((i + k) % length);
+                if(place < 0) place = length + place;
+                b[place] = a[i];
+            }
+        }
+        else {
+            for(int i = 0; i < length; i++){
+                b[(i + k) % length] = a[i];
+            }
+        }
+
+
         for(int i = 0; i < length; i++){
-            newPos[i] = (i + k) % length;
+            a[i] = b[i];
         }
-        char temp;
-        for (int i = 0; i < length; i++){
-            temp = a[i];
-            newPos[i];
-        }
+
 
     }
 
-    public static void rotasjonNeg(char[] a){
-        if(a.length < 2){
-            return;
-        }
-
-        char temp = a[0];
-
-        for(int i = 1; i < a.length -1; i++){
-            a[i] = a[i - 1];
-        }
-        a[a.length -1] = temp;
-    }
+    /**
+     * OPPGAVE 7
+     */
 
 }

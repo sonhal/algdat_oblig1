@@ -378,6 +378,9 @@ public class Oblig1 {
         return new int[] {m,nm,nnm};
     }
 
+    /**
+     * OPPGAVE 10
+     */
     public static boolean inneholdt(String a, String b){
         //B er en String som skal inneholde A
 
@@ -401,9 +404,6 @@ public class Oblig1 {
 
     }
 
-    public static int antallGangerSett(int[] abcState, char c){
-        return abcState[c - 65];
-    }
 
     public static void registrerNyCharObservasjon(int[] abcState, char c){
         if(c == 'Å') abcState[c - 169] += 1;

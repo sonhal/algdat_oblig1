@@ -27,10 +27,10 @@ public class Oblig1Test {
         antallFeil += oppgave4();
         antallFeil += oppgave5();
         antallFeil += oppgave6();
-        //antallFeil += oppgave7();
-        //antallFeil += oppgave8();
-        //antallFeil += oppgave9();
-        //antallFeil += oppgave10();
+        antallFeil += oppgave7();
+        antallFeil += oppgave8();
+        antallFeil += oppgave9();
+        antallFeil += oppgave10();
 
         if (antallFeil == 0) {
             System.out.println("Gratulerer!! Du passerte testen!");
@@ -498,7 +498,7 @@ public class Oblig1Test {
 
         return antallFeil;
     }
-/*
+
     ///// Oppgave 7 //////////////////////////////////////
 
     public static int oppgave7() {
@@ -952,7 +952,7 @@ public class Oblig1Test {
         }
         return antallFeil;
     }
-*/
+
     ///// Hjelpemetoder /////////////////////////////
 
     public static void bytt(int[] a, int i, int j) {

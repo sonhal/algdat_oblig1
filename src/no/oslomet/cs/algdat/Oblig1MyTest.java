@@ -126,4 +126,55 @@ class Oblig1MyTest {
     @Test
     void rotasjonNeg() {
     }
+
+    @Test
+    void flett() {
+        String s = Oblig1.flett("", "AB");  // kaller metoden
+        System.out.println(s);
+    }
+
+    @Test
+    void flett1() {
+    }
+
+    @Test
+    void indekssortering() {
+        int[] testArray = {21,23,42,4,4,6,12,4,8,34};
+        System.out.println(Arrays.toString(Oblig1.indekssortering(testArray)));
+    }
+
+    @Test
+    void insettingSorterting() {
+        int[] testArray = {21,23,42,4,4,6,12,4,8,34};
+        System.out.println(Arrays.toString(testArray));
+    }
+
+    @Test
+    void insettingSortertingForIndex() {
+    }
+
+    @Test
+    void tredjeMin() {
+        int[] testArray = {10, 6, 3, 4, 5, 9, 1, 7, 8, 2};
+        int[] result = Oblig1.tredjeMin(testArray);
+        System.out.println(Arrays.toString(result));
+    }
+
+    @Test
+    void inneholdt() {
+        boolean b = Oblig1.inneholdt("ABBA", "BARBERER");
+        System.out.println(b);
+    }
+
+    @Test
+    void antallGangerSett() {
+        int[] ax = new int[29];
+        char a = 'Å';
+        char b = 'Æ';
+        char c = 'Ø';
+        Oblig1.registrerNyCharObservasjon(ax,a);
+        Oblig1.registrerNyCharObservasjon(ax,b);
+        Oblig1.registrerNyCharObservasjon(ax,c);
+        System.out.println(Arrays.toString(ax));
+    }
 }

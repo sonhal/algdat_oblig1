@@ -4,6 +4,7 @@ package no.oslomet.cs.algdat;
 
 import javax.management.InvalidAttributeValueException;
 import java.security.InvalidParameterException;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
@@ -261,5 +262,156 @@ public class Oblig1 {
     /**
      * OPPGAVE 7
      */
+    public static String flett(String s, String t){
+        int i = 0;
+        int ii = 0;
+
+        StringBuilder newString = new StringBuilder();
+        while(i < s.length() && ii < t.length()){
+            newString.append(s.charAt(i++));
+            newString.append(t.charAt(ii++));
+        }
+        while (i < s.length()) newString.append(s.charAt(i++));
+        while (ii < t.length()) newString.append(t.charAt(ii++));
+        return newString.toString();
+    }
+
+    public static String flett(String... s){
+        StringBuilder newString = new StringBuilder();
+        int i = 0;
+        boolean allStringsEmpty = true; //Vi må vite om alle Strings i String arrayet er tomme. Denne holder denne informasjonen
+
+        while (true){
+            allStringsEmpty = true; //Vi setter den til true slik at vist alle Strings er tomme så faller vi ut av loopen
+
+            for(String str: s){
+                if(i < str.length()){
+                    allStringsEmpty = false;
+                    newString.append(str.charAt(i));
+                }
+            }
+            if(allStringsEmpty) break;
+            i++;
+        }
+        return newString.toString();
+    }
+
+    /**
+     * OPPGAVE 8
+     */
+    public static int[] indekssortering(int[] a){
+        int arrLength = a.length;
+        int[] b = new int[arrLength];
+
+        Arrays.setAll(b, i -> i++);
+
+        insettingSortertingForIndex(a, b);
+        return b;
+    }
+
+    public static void insettingSortertingForIndex(int[] verdiArray, int[] indexArray){
+        int length = verdiArray.length;
+
+        for(int i = 1; i < length; i++){
+
+            int verdi  = verdiArray[indexArray[i]];
+            int verdiIndex = indexArray[i];
+            int j = i - 1;
+            for(;  j >= 0 && verdi < verdiArray[indexArray[j]]; j--){
+                indexArray[j + 1] = indexArray[j];
+            }
+            indexArray[j + 1] = verdiIndex;
+        }
+    }
+
+    /**
+     * OPPGAVE 9
+     */
+    public static int[] tredjeMin(int[] a){
+        int length = a.length;
+
+        if(length < 3){
+            throw new NoSuchElementException("Det må hvere minst 3 elementer i arrayet");
+        }
+
+        int[] startIndexes = indekssortering(Arrays.copyOfRange(a,0,3));
+
+        int m = startIndexes[0];      // m er posisjonen til største verdi
+        int nm = startIndexes[1];     // nm er posisjonen til nest største verdi
+        int nnm = startIndexes[2];     // nnm er posisjonen til nest nest største verdi
+
+        int minverdi = a[m];                // største verdi
+        int nestminverdi = a[nm];           // nest største verdi
+        int nestnestminverdi = a[nnm];           // nest største verdi
+
+        for (int i = 3; i < length; i++)
+        {
+            if(a[i] < nestnestminverdi){
+                if (a[i] < nestminverdi) {
+                    if (a[i] < minverdi) {
+                        nnm = nm;
+                        nestnestminverdi = nestminverdi;
+
+                        nm = m;
+                        nestminverdi = minverdi;     // ny nest størst
+
+                        m = i;
+                        minverdi = a[m];              // ny størst
+                    }
+                    else
+                    {
+                        nnm = nm;
+                        nestnestminverdi = nestminverdi;
+
+                        nm = i;
+                        nestminverdi = a[nm];         // ny nest størst
+                    }
+                }
+                else {
+                    nnm = i;
+                    nestnestminverdi = a[nnm];
+                }
+            }
+
+        }
+
+        return new int[] {m,nm,nnm};
+    }
+
+    public static boolean inneholdt(String a, String b){
+        //B er en String som skal inneholde A
+
+        if(a.equals("")) return true;
+
+        int[] bAlfa = new int[29];
+        int[] aAlfa = new int[29];
+
+        for(int i = 0; i < b.length(); i++){
+            registrerNyCharObservasjon(bAlfa, b.charAt(i));
+        }
+
+        for(int i = 0; i < a.length(); i++){
+            registrerNyCharObservasjon(aAlfa, a.charAt(i));
+        }
+
+        for(int i = 0; i < 29; i++){
+            if(aAlfa[i] > bAlfa[i]) return false;
+        }
+        return true;
+
+    }
+
+    public static int antallGangerSett(int[] abcState, char c){
+        return abcState[c - 65];
+    }
+
+    public static void registrerNyCharObservasjon(int[] abcState, char c){
+        if(c == 'Å') abcState[c - 169] += 1;
+        else if(c == 'Ø') abcState[c - 189] += 1;
+        else if(c == 'Æ') abcState[c - 172] += 1;
+        else abcState[c - 65] += 1;
+    }
+
+
 
 }

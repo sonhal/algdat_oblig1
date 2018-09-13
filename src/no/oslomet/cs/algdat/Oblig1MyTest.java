@@ -43,7 +43,18 @@ class Oblig1MyTest {
             sum += number;
         }
 
-        System.out.println(sum / 100);
+        int[][] arraysP = new int[100][10];
+        for (int i = 0; i < 100; i++) {
+            arraysP[i] = Oblig1.randIntArray(10);
+        }
+        int sumP = 0;
+        for (int i = 0; i < 100; i++) {
+            int number = Oblig1.ombyttningerMaksFraPensum(arraysP[i]);
+            sumP += number;
+        }
+
+        System.out.println("Maks fra Oblig: " + sum / 100);
+        System.out.println("Maks fra Pensum: " + sumP / 100);
     }
 
     @org.junit.jupiter.api.Test
@@ -61,7 +72,6 @@ class Oblig1MyTest {
         assertFalse(Oblig1.isSorted(testArray));
         assertTrue(Oblig1.isSorted(sortedArray));
     }
-
 
     @Test
     void randIntArray() {
@@ -114,13 +124,6 @@ class Oblig1MyTest {
 
     @Test
     void kvikksortering() {
-    }
-
-    @Test
-    void rotasjonOpt() {
-        char[] delArr = {'A', 'B', 'C', 'D', 'E', 'X'};
-        Oblig1.rotasjonOpt(delArr, -1);
-        System.out.println(Arrays.toString(delArr));
     }
 
     @Test

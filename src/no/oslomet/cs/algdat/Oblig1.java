@@ -1,9 +1,6 @@
-
-
 package no.oslomet.cs.algdat;
 
-import javax.management.InvalidAttributeValueException;
-import java.security.InvalidParameterException;
+
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -46,7 +43,9 @@ public class Oblig1 {
      * Det blir flest ombyttninger om vært tall i arrayet er større en det forgje (n ombyttninger).
      * Det blir færrest ombyttninger når det største tallet i arrayet ligger først i arrayet(1 ombyttning).
      * Gjennomsnittet av ombyttninger er det samme som det harmoniske tallet til størrelsen til arrayet (log(n) + 0.577).
-     * 
+     *
+     * Utifra testing på arrays med permutasjoner 1..10 der har maks i Oblig1 i gjennomsnitt 7 ombyttinger per kjøring.
+     * Menst maks() fra pensum har bare 1 i gjennomsnitt pr kjøring. Maks() metoden fra pesum er mer effektiv.
      */
     public static int maks(int[] a) {
         
@@ -64,6 +63,21 @@ public class Oblig1 {
         }
         return a[a.length -1 ];
     }
+
+    public static int ombyttningerMaksFraPensum(int[] a)   // versjon 2 av maks-metoden
+    {
+        int m = 0;               // indeks til største verdi
+        int maksverdi = a[0];    // største verdi
+        int ombytting = 0;
+        for (int i = 1; i < a.length; i++) if (a[i] > maksverdi)
+        {
+            ombytting++;
+            maksverdi = a[i];     // største verdi oppdateres
+            m = i;                // indeks til største verdi oppdateres
+        }
+        return ombytting;   // returnerer indeks/posisjonen til største verdi
+
+    } // maks
     
     public static int ombyttinger(int[] a){
         
@@ -172,13 +186,6 @@ public class Oblig1 {
     /*
     *Skriv om som egen implementering
      */
-    private static int sParter0(int[] a, int v, int h, int indeks)
-    {
-        bytt(a, indeks, h);           // skilleverdi a[indeks] flyttes bakerst
-        int pos = parter0(a, v, h - 1, a[h]);  // partisjonerer a[v:h − 1]
-        bytt(a, pos, h);              // bytter for å få skilleverdien på rett plass
-        return pos;                   // returnerer posisjonen til skilleverdien
-    }
 
     private static int parter0(int[] a, int v, int h, int skilleverdi)
     {
@@ -190,6 +197,14 @@ public class Oblig1 {
             if (v < h) bytt(a,v++,h--);                 // bytter om a[v] og a[h]
             else  return v;  // a[v] er nåden første som ikke er mindre enn skilleverdi
         }
+    }
+
+    private static int sParter0(int[] a, int v, int h, int indeks)
+    {
+        bytt(a, indeks, h);           // skilleverdi a[indeks] flyttes bakerst
+        int pos = parter0(a, v, h - 1, a[h]);  // partisjonerer a[v:h − 1]
+        bytt(a, pos, h);              // bytter for å få skilleverdien på rett plass
+        return pos;                   // returnerer posisjonen til skilleverdien
     }
 
     private static void kvikksortering0(int[] a, int v, int h)  // en privat metode
@@ -227,11 +242,7 @@ public class Oblig1 {
     /**
      * OPPGAVE 6
      */
-    public static void rotasjon(char[] a, int k){
-        rotasjonOpt(a, k);
-    }
-
-    public static void rotasjonOpt(char[] a, int  k){
+    public static void rotasjon(char[] a, int  k){
         int length = a.length;
         if(length < 2){
             return;
@@ -404,14 +415,10 @@ public class Oblig1 {
 
     }
 
-
     public static void registrerNyCharObservasjon(int[] abcState, char c){
         if(c == 'Å') abcState[c - 169] += 1;
         else if(c == 'Ø') abcState[c - 189] += 1;
         else if(c == 'Æ') abcState[c - 172] += 1;
         else abcState[c - 65] += 1;
     }
-
-
-
 }

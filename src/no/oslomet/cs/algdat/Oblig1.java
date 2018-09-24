@@ -189,36 +189,35 @@ public class Oblig1 {
 
     private static int parter0(int[] a, int v, int h, int skilleverdi)
     {
-        while (true)                                  // stopper når v > h
+        while (true)
         {
-            while (v <= h && a[v] < skilleverdi) v++;   // h er stoppverdi for v
-            while (v <= h && a[h] >= skilleverdi) h--;  // v er stoppverdi for h
+            while (v <= h && a[v] < skilleverdi) v++;
+            while (v <= h && a[h] >= skilleverdi) h--;
 
-            if (v < h) bytt(a,v++,h--);                 // bytter om a[v] og a[h]
-            else  return v;  // a[v] er nåden første som ikke er mindre enn skilleverdi
+            if (v < h) bytt(a,v++,h--);
+            else  return v;
         }
     }
 
     private static int sParter0(int[] a, int v, int h, int indeks)
     {
-        bytt(a, indeks, h);           // skilleverdi a[indeks] flyttes bakerst
-        int pos = parter0(a, v, h - 1, a[h]);  // partisjonerer a[v:h − 1]
-        bytt(a, pos, h);              // bytter for å få skilleverdien på rett plass
-        return pos;                   // returnerer posisjonen til skilleverdien
+        bytt(a, indeks, h);
+        int pos = parter0(a, v, h - 1, a[h]);
+        bytt(a, pos, h);
+        return pos;
     }
 
-    private static void kvikksortering0(int[] a, int v, int h)  // en privat metode
+    private static void kvikksortering0(int[] a, int v, int h)
     {
-        if (v >= h) return;  // a[v:h] er tomt eller har maks ett element
-        int k = sParter0(a, v, h, (v + h)/2);  // bruker midtverdien
-        kvikksortering0(a, v, k - 1);     // sorterer intervallet a[v:k-1]
-        kvikksortering0(a, k + 1, h);     // sorterer intervallet a[k+1:h]
+        if (v >= h) return;
+        int k = sParter0(a, v, h, (v + h)/2);
+        kvikksortering0(a, v, k - 1);
+        kvikksortering0(a, k + 1, h);
     }
 
     public static void kvikksortering(int[] a, int fra, int til) // a[fra:til>
     {
-        //fratilKontroll(a.length, fra, til);  // sjekker når metoden er offentlig
-        kvikksortering0(a, fra, til - 1);  // v = fra, h = til - 1
+        kvikksortering0(a, fra, til - 1);
     }
 
     /**
